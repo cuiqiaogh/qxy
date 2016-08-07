@@ -5,6 +5,7 @@ echo ""
 useradd -g root $USERNAME
 echo $PASSWD|passwd --stdin $USERNAME
 sed -i "s@^(#P|P)ermitRootLogin.*@&\nPermitRootLogin no@" /etc/ssh/sshd_config
+#sed -in s/"^(#P|P)ermitRootLogin.*"/"\nPermitRootLogin no"/g /etc/ssh/sshd_config
 sed -i "s@^#UseDNS .*@&\nUseDNS  no@" /etc/ssh/sshd_config
 echo -e "$Users $USERNAME has been created, root can not login from SSH "
 
