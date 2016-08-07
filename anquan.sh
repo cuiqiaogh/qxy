@@ -4,8 +4,8 @@ read -s -p "please input password :" PASSWD
 echo ""
 useradd -g root $USERNAME
 echo $PASSWD|passwd --stdin $USERNAME
-sed -i "s@^#PermitRootLogin.*@&\nPermitRootLogin no@" /etc/ssh/sshd_config
-sed -i "s@^#UseDNS yes.*@&\nUseDNS  no@" /etc/ssh/sshd_config
+sed -i "s@^(#P|P)ermitRootLogin.*@&\nPermitRootLogin no@" /etc/ssh/sshd_config
+sed -i "s@^#UseDNS .*@&\nUseDNS  no@" /etc/ssh/sshd_config
 echo -e "$Users $USERNAME has been created, root can not login from SSH "
 
 while :; do echo
