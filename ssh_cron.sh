@@ -1,10 +1,11 @@
 #!/bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
+black_dir=/home/sshblack.txt
 
-/bin/cat /var/log/secure | awk '/Failed/{print $(NF-3)}' | sort | uniq -c | awk '{print $2"="$1;}' > /root/sshblack.txt
+/bin/cat /var/log/secure | awk '/Failed/{print $(NF-3)}' | sort | uniq -c | awk '{print $2"="$1;}' > $black_dir
 DEFINE="10"
-for i in `cat /root/sshblack.txt`
+for i in `cat $black_dir`
 do
     IP="`echo $i | awk -F = '{print $1}'`"
     NUM="`echo $i | awk -F = '{print $2}'`"
@@ -15,4 +16,3 @@ do
                 fi
         fi
 done
-
